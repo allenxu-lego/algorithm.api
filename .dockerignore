@@ -1,0 +1,16 @@
+target/
+.DS_Store
+.git
+.gitignore
+README.md
+HELP.md
+.dockerignore
+mvnw
+mvnw.cmd
+.dependabot/
+.github/
+.idea/
+*.iml
+*.iws
+out/
+*.log

@@ -30,4 +30,6 @@ public interface IListNodeService {
     String printListNode(ListNode head);
 
     public int lengthOfLongestSubstring(String s);
+
+    public int[] twoSum(int[] nums, int target);
 }

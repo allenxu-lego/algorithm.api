@@ -1,6 +1,8 @@
 package com.playground.algorithmapi.service;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -80,7 +82,7 @@ public class ListNodeServiceImpl implements IListNodeService {
             return 0;
         }
 
-        char[] chars = s.toCharArray();
+        char[] chars = s.toCharArray();        
         Set<Character> seen = new HashSet<>();
 
         int left = 0;
@@ -94,6 +96,38 @@ public class ListNodeServiceImpl implements IListNodeService {
 
             max = Math.max(max, right-left+1);
         }
+        
         return max; 
+    }
+
+    @Override
+    public int[] twoSum(int[] nums, int target){
+         Map<Integer, Integer> resultMap = new HashMap<>();   
+         for(int i=0; i<nums.length; i++){
+            int remaining = target - nums[i];
+            if(resultMap.containsKey(remaining)){
+                return new int[]{resultMap.get(remaining),i};
+            }
+            resultMap.put(nums[i],i);
+         }
+         
+
+        return new int[]{};
+    }
+
+    public String mergeAlternately(String word1, String word2) {
+        StringBuilder result = new StringBuilder();
+        int i=0;
+        while(i<word1.length() && i<word2.length()){
+            result.append(String.valueOf(word1.charAt(i)) + String.valueOf(word2.charAt(i)));
+            i++;
+        }
+        if(i>=word1.length())
+            result.append(word2.substring(i));
+        else
+            result.append(word1.substring(i));
+        
+        return result.toString();
+
     }
 }

@@ -32,4 +32,8 @@ public interface IListNodeService {
     public int lengthOfLongestSubstring(String s);
 
     public int[] twoSum(int[] nums, int target);
+
+    public String mergeAlternately(String word1, String word2);
+
+    public int numTeams(int[] rating);
 }

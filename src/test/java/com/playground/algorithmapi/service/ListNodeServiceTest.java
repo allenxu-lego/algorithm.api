@@ -120,4 +120,10 @@ class ListNodeServiceTest {
         // 测试包含空格的字符串
         assertEquals(3, listNodeService.lengthOfLongestSubstring("a b c"));
     }
+
+    @Test
+    @DisplayName("测试mergeAlternately方法")
+    void testMergeAlternately(){
+        assertEquals("acbde", listNodeService.mergeAlternately("ab", "cde"));
+    }
 }

@@ -1,8 +1,5 @@
 package com.playground.algorithmapi.controller;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +11,9 @@ import com.playground.algorithmapi.dto.AlgorithmRequest;
 import com.playground.algorithmapi.model.ListNode;
 import com.playground.algorithmapi.service.IListNodeService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -60,5 +60,11 @@ public class DemoController {
         ListNode result = listNodeService.removeNthNode(head, request.getNth());
         
         return "Processed input: " + listNodeService.printListNode(head) + "\n Output: " + listNodeService.printListNode(result);
+    }
+
+
+    @GetMapping("num-teams")
+    public String numTeams(){
+        return "numTeams: " + listNodeService.numTeams(new int[]{2,5,3,4,1});
     }
 }

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <!-- 日志文件存储路径 -->
+        <Property name="LOG_PATH">./logs</Property>
+        <!-- 日志格式 -->
+        <Property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <!-- 控制台日志格式 -->
+        <Property name="CONSOLE_PATTERN">%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{[%t]}{magenta} %clr{%-5level}{highlight} %clr{%logger{36}}{cyan} - %msg%n</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- 控制台输出 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${CONSOLE_PATTERN}"/>
+        </Console>
+
+        <!-- 所有日志文件 -->
+        <RollingFile name="RollingFileAll" fileName="${LOG_PATH}/all.log" filePattern="${LOG_PATH}/all-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <!-- 错误日志文件 -->
+        <RollingFile name="RollingFileError" fileName="${LOG_PATH}/error.log" filePattern="${LOG_PATH}/error-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+        </RollingFile>
+
+        <!-- SQL日志文件 -->
+        <RollingFile name="RollingSqlFile" fileName="${LOG_PATH}/sql.log" filePattern="${LOG_PATH}/sql-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- MyBatis-Plus SQL日志 -->
+        <Logger name="com.baomidou.mybatisplus" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingSqlFile"/>
+        </Logger>
+
+        <!-- 应用程序日志 -->
+        <Logger name="com.playground.algorithmapi" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFileAll"/>
+            <AppenderRef ref="RollingFileError"/>
+        </Logger>
+
+        <!-- Spring框架日志 -->
+        <Logger name="org.springframework" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFileAll"/>
+        </Logger>
+
+        <!-- HikariCP日志 -->
+        <Logger name="com.zaxxer.hikari" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFileAll"/>
+        </Logger>
+
+        <!-- 根日志记录器 -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFileAll"/>
+            <AppenderRef ref="RollingFileError"/>
+        </Root>
+    </Loggers>
+</Configuration>

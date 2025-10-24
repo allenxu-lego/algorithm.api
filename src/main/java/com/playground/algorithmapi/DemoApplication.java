@@ -55,6 +55,13 @@ public class DemoApplication {
 		System.out.println("word1: " + word1);
 		System.out.println("word2: " + word2);
 		System.out.println("合并结果: " + merged);
+
+        // 测试插入排序
+        System.out.println("\n=== 测试插入排序 ===");
+        int[] numInsertionSort ={9, 5, 1, 4, 3, 8, 2, 7, 6};
+        System.out.println("原始数组"+ java.util.Arrays.toString(numInsertionSort));
+        int[] sortedNumInsertionSort = service.insertionSort(numInsertionSort);
+        System.out.println("排序结果"+ java.util.Arrays.toString(sortedNumInsertionSort));
 	}
 
 }

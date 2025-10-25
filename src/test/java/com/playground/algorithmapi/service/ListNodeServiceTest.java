@@ -3,6 +3,8 @@ package com.playground.algorithmapi.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import com.playground.algorithmapi.service.impl.ListNodeServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -97,33 +99,4 @@ class ListNodeServiceTest {
         assertEquals("1 2 ", result);
     }
 
-    @Test
-    @DisplayName("测试lengthOfLongestSubstring方法")
-    void testLengthOfLongestSubstring() {
-        // 测试空字符串
-        assertEquals(0, listNodeService.lengthOfLongestSubstring(""));
-        
-        // 测试单字符
-        assertEquals(1, listNodeService.lengthOfLongestSubstring("a"));
-        
-        // 测试无重复字符
-        assertEquals(3, listNodeService.lengthOfLongestSubstring("abc"));
-        
-        // 测试全部重复字符
-        assertEquals(1, listNodeService.lengthOfLongestSubstring("aaaa"));
-        
-        // 测试部分重复字符 - 经典例子
-        assertEquals(3, listNodeService.lengthOfLongestSubstring("abcabcbb"));
-        assertEquals(1, listNodeService.lengthOfLongestSubstring("bbbbb"));
-        assertEquals(3, listNodeService.lengthOfLongestSubstring("pwwkew"));
-        
-        // 测试包含空格的字符串
-        assertEquals(3, listNodeService.lengthOfLongestSubstring("a b c"));
-    }
-
-    @Test
-    @DisplayName("测试mergeAlternately方法")
-    void testMergeAlternately(){
-        assertEquals("acbde", listNodeService.mergeAlternately("ab", "cde"));
-    }
 }

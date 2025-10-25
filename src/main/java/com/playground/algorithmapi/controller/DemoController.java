@@ -1,5 +1,6 @@
 package com.playground.algorithmapi.controller;
 
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.playground.algorithmapi.dto.AlgorithmRequest;
 import com.playground.algorithmapi.model.ListNode;
 import com.playground.algorithmapi.service.IListNodeService;
+import com.playground.algorithmapi.service.IAlgorithmService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -24,9 +26,11 @@ import jakarta.validation.constraints.Min;
 public class DemoController {
 
     private final IListNodeService listNodeService;
+    private final IAlgorithmService algorithmService;
 
-    public DemoController(IListNodeService listNodeService) {
+    public DemoController(IListNodeService listNodeService, IAlgorithmService algorithmService) {
         this.listNodeService = listNodeService;
+        this.algorithmService = algorithmService;
     }
 
     @GetMapping("/invoke")
@@ -65,6 +69,6 @@ public class DemoController {
 
     @GetMapping("num-teams")
     public String numTeams(){
-        return "numTeams: " + listNodeService.numTeams(new int[]{2,5,3,4,1});
+        return "numTeams: " + algorithmService.numTeams(new int[]{2,5,3,4,1});
     }
 }

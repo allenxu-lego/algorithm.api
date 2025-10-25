@@ -1,7 +1,9 @@
 package com.playground.algorithmapi.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -162,7 +164,11 @@ public class ListNodeServiceImpl implements IListNodeService {
     }
 
 
+    @Override
     public int[] insertionSort(int[] nums){
+        
+        String[] test = new String[]{"a","b","c","d"};
+        
         for(int i=1; i<nums.length; i++){
             int key = nums[i];
             int j = i-1;
@@ -173,5 +179,56 @@ public class ListNodeServiceImpl implements IListNodeService {
             nums[j+1] = key;
         }
         return nums;
+    }
+
+    @Override
+    public List<String> commonChars(String[] words) {
+        List<String> result = new ArrayList<>();
+        Map<Character,Set<Integer>>countMap = new HashMap<>();
+        for(int i=0;i<words.length; i++){
+            String word = words[i];
+            for(char c : word.toCharArray()){
+                countMap.computeIfAbsent(c, k-> new HashSet<>()).add(i);                
+            }
+        }
+        
+        for(Character c : countMap.keySet()){
+            Set<Integer> set = countMap.get(c);
+            if(set.size() == words.length){
+                result.add(String.valueOf(c));
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<String> commonCharsDuplicate(String[] words) {
+        List<String> result = new ArrayList<>();
+        Map<Character,Integer> firstWordCountMap = new HashMap<>();
+
+        char[] firstWordChars = words[0].toCharArray();
+        for(char c : firstWordChars){
+            firstWordCountMap.put(c, firstWordCountMap.getOrDefault(c, 0) + 1);
+        }
+        
+        for(char c: firstWordCountMap.keySet()){
+            int times = firstWordCountMap.get(c);
+            for(int i=1;i<words.length;i++){
+                int matchTimes = 0;
+                for(char c2 : words[i].toCharArray()){
+                    if(c2==c){
+                        matchTimes++;
+                    }
+                }
+                times = Math.min(times,matchTimes);
+                if(times == 0)
+                    break;
+            }
+            while(times > 0){
+                result.add(String.valueOf(c));
+                times--;
+            }
+        }
+        return result;
     }
 }

@@ -1,9 +1,14 @@
 package com.playground.algorithmapi;
 
-import com.playground.algorithmapi.model.ListNode;
-import com.playground.algorithmapi.service.ListNodeServiceImpl;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.playground.algorithmapi.model.ListNode;
+import com.playground.algorithmapi.service.ListNodeServiceImpl;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -62,6 +67,15 @@ public class DemoApplication {
         System.out.println("原始数组"+ java.util.Arrays.toString(numInsertionSort));
         int[] sortedNumInsertionSort = service.insertionSort(numInsertionSort);
         System.out.println("排序结果"+ java.util.Arrays.toString(sortedNumInsertionSort));
+
+		exerciseStreamFunctions();
+	}
+
+	private static void exerciseStreamFunctions(){
+		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		System.out.println("原始数组" + numbers.toString());
+		List<Integer> filtered = numbers.stream().filter(f->f>5).collect(Collectors.toList());
+		System.out.println("排序结果" + filtered.toString());
 	}
 
 }

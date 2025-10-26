@@ -1,5 +1,7 @@
 package com.playground.algorithmapi.service;
 
+import com.playground.algorithmapi.model.TreeNode;
+
 import java.util.List;
 
 public interface IAlgorithmService {
@@ -26,4 +28,13 @@ public interface IAlgorithmService {
     public void collectorStreamFunction();
 
     public void practiseStreamFunction();
+
+    public String longestPalindrome(String s);
+
+    public List<List<Integer>> levelOrderByQueue(TreeNode root);
+
+    public List<List<Integer>> levelOrderByRecursion(TreeNode root);
+
+    public List<Integer> preorderTraversal(TreeNode root);
+
 }

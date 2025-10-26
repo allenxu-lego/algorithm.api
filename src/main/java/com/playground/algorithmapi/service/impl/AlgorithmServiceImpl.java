@@ -1,5 +1,5 @@
 package com.playground.algorithmapi.service.impl;
-
+import com.playground.algorithmapi.model.*;
 import com.playground.algorithmapi.service.IAlgorithmService;
 import org.springframework.stereotype.Service;
 
@@ -378,5 +378,80 @@ public class AlgorithmServiceImpl implements IAlgorithmService {
         System.out.println("12. 将一个大列表分成指定大小的批次: " + batches);
     }
 
+    @Override
+    public String longestPalindrome(String s){
+        List<String> results = new ArrayList<>();
+        for(int i=0;i<s.length();i++) {
+            StringBuilder candidate = new StringBuilder(String.valueOf(s.charAt(i)));
+            for(int j=i+1;j<s.length();j++){
+                candidate.append(String.valueOf(s.charAt(j)));
 
+                if(candidate.toString().equals(new StringBuilder(candidate.toString()).reverse().toString())){
+                    results.add(candidate.toString());
+                }
+            }
+        }
+        if(results.size() > 0){
+            return results.stream()
+                    .sorted(Comparator.comparing(result->result.length()))
+                    .collect(Collectors.toList()).get(0);
+        }else {
+            return "";
+        }
+    }
+
+    @Override
+    public List<List<Integer>> levelOrderByQueue(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(root == null){
+            return result;
+        }
+
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.offer(root);
+
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            List<Integer> level = new ArrayList<>();
+            for(int i=0; i<size; i++){
+                TreeNode node = queue.poll();
+                level.add(node.getVal());
+                if(node.getLeft() !=null) queue.offer(node.getLeft());
+                if(node.getRight() != null) queue.offer(node.getRight());
+            }
+            result.add(level);
+        }
+        return result;
+    }
+
+    @Override
+    public List<List<Integer>> levelOrderByRecursion(TreeNode root){
+        List<List<Integer>> results = new ArrayList<>();
+        dfs(root, 0, results);
+        return results;
+    }
+
+    private void dfs(TreeNode node, int depth, List<List<Integer>> result){
+        if(node == null) return;
+        if(result.size() == depth){
+            result.add(new ArrayList<>());
+        }
+        result.get(depth).add(node.getVal());
+        if(node.getLeft()!=null) dfs(node.getLeft(), depth+1, result);
+        if(node.getRight()!=null) dfs(node.getRight(),depth+1, result);
+    }
+
+    @Override
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        preorder(root, result);
+        return result;
+    }
+
+    private void preorder(TreeNode node, List<Integer>result){
+        if(node == null) return;
+        result.add(node.getVal());
+        preorder(node.getLeft(), result);
+        preorder(node.getRight(), result);
+    }
 }

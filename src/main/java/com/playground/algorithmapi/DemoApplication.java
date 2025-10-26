@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import com.playground.algorithmapi.model.TreeNode;
 import com.playground.algorithmapi.service.impl.AlgorithmServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -74,7 +75,39 @@ public class DemoApplication {
         //algorithmSvc.exerciseStreamFunction();
         //algorithmSvc.mapLambdaStreamFunction("world");
         //algorithmSvc.collectorStreamFunction();
-        algorithmSvc.practiseStreamFunction();
+        //algorithmSvc.practiseStreamFunction();
+        //System.out.println(algorithmSvc.longestPalindrome("cbbd"));
+
+        //Binary tree level order traversal
+        TreeNode root1 = TreeNode.builder()
+                .val(3)
+                .left(TreeNode.builder()
+                        .val(9)
+                        .build())
+                .right(TreeNode.builder()
+                        .val(20)
+                        .left(TreeNode.builder().val(15).build())
+                        .right(TreeNode.builder().val(7).build())
+                        .build())
+                .build();
+        System.out.println(algorithmSvc.levelOrderByRecursion(root1));
+        System.out.println(algorithmSvc.levelOrderByQueue(root1));
+
+        //Binary tree pre order traversal
+        //Input: root = [1,null,2,3]
+        TreeNode root2 = TreeNode.builder()
+                .val(1)
+                .left(null)
+                .right(TreeNode.builder()
+                        .val(2).right(null)
+                        .left(
+                                TreeNode.builder()
+                                        .val(3)
+                                        .left(null)
+                                        .right(null).build()
+                        ).build()
+                ).build();
+        System.out.println(algorithmSvc.preorderTraversal(root2));
 	}
 
 

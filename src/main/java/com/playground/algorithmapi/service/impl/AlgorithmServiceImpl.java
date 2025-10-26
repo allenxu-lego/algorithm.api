@@ -184,13 +184,13 @@ public class AlgorithmServiceImpl implements IAlgorithmService {
     @Override
     public void mapLambdaStreamFunction(String appended){
         List<String> strings = Arrays.asList("hello", "java", "python", "digital");
-        System.out.println("原始数组"+ strings.toString());
+        System.out.println("原始数组"+ strings);
         System.out.println("追加字符串" +
                 strings.stream().map(
                         s-> s + " " + appended
                 ).map(
                         s-> s + " another append"
-                ).collect(Collectors.toList()));
+                ).toList());
     }
 
     @Override
@@ -201,7 +201,7 @@ public class AlgorithmServiceImpl implements IAlgorithmService {
         // 1. toList
         List<String> toList = words.stream()
                 .map(String::toUpperCase)
-                .collect(Collectors.toList());
+                .toList();
         System.out.println("1. toList: " + toList);
 
         // 2. toSet

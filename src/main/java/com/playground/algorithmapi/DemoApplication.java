@@ -7,7 +7,6 @@ import com.playground.algorithmapi.service.impl.AlgorithmServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.playground.algorithmapi.service.impl.ListNodeServiceImpl;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -26,7 +25,7 @@ public class DemoApplication {
 	 * 可以直接运行此方法来测试特定算法，而无需启动整个Spring Boot应用
 	 */
 	public static void mainDebug(String[] args) {
-        System.out.println("Arguments: " + args);
+        System.out.println("Arguments: " + args.toString());
 		//ListNodeServiceImpl service = new ListNodeServiceImpl();
         AlgorithmServiceImpl algorithmSvc = new AlgorithmServiceImpl();
 

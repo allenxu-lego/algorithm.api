@@ -14,7 +14,7 @@ public class AlgorithmServiceImpl implements IAlgorithmService {
     @Override
     public int lengthOfLongestSubstring(String s) {
 
-        if(s==null || s.length()==0){
+        if(s==null || s.isEmpty()){
             return 0;
         }
 
@@ -56,8 +56,8 @@ public class AlgorithmServiceImpl implements IAlgorithmService {
         StringBuilder result = new StringBuilder();
         int i=0;
         while(i<word1.length() && i<word2.length()){
-            result.append(String.valueOf(word1.charAt(i)));
-            result.append(String.valueOf(word2.charAt(i)));
+            result.append(word1.charAt(i));
+            result.append(word2.charAt(i));
             i++;
         }
         if(i>=word1.length())
@@ -100,9 +100,6 @@ public class AlgorithmServiceImpl implements IAlgorithmService {
 
     @Override
     public int[] insertionSort(int[] nums){
-
-        String[] test = new String[]{"a","b","c","d"};
-
         for(int i=1; i<nums.length; i++){
             int key = nums[i];
             int j = i-1;
@@ -169,19 +166,19 @@ public class AlgorithmServiceImpl implements IAlgorithmService {
     @Override
     public void exerciseStreamFunction(){
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        System.out.println("原始数组" + numbers.toString());
-        List<Integer> filtered = numbers.stream().filter(f->f>5).collect(Collectors.toList());
-        System.out.println("排序结果" + filtered.toString());
+        System.out.println("原始数组" + numbers);
+        List<Integer> filtered = numbers.stream().filter(f->f>5).toList();
+        System.out.println("排序结果" + filtered);
     }
 
     @Override
     public void sortStreamFunction(){
         List<Integer> numbers = Arrays.asList(4,3,5,6,1,2,9,7,10,16,12,11);
-        System.out.println("原始数组"+ numbers.toString());
+        System.out.println("原始数组"+ numbers);
         List<Integer> sorted = numbers.stream().sorted().collect(Collectors.toList());
-        System.out.println("ASC排序结果" + sorted.toString());
-        sorted = numbers.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-        System.out.println("DES排序结果" + sorted.toString());
+        System.out.println("ASC排序结果" + sorted);
+        sorted = numbers.stream().sorted(Comparator.reverseOrder()).toList();
+        System.out.println("DES排序结果" + sorted);
     }
 
     @Override

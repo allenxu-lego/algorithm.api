@@ -1,9 +1,6 @@
 package com.playground.algorithmapi;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import com.playground.algorithmapi.model.TreeNode;
 import com.playground.algorithmapi.service.impl.AlgorithmServiceImpl;
@@ -29,7 +26,8 @@ public class DemoApplication {
 	 * 可以直接运行此方法来测试特定算法，而无需启动整个Spring Boot应用
 	 */
 	public static void mainDebug(String[] args) {
-		ListNodeServiceImpl service = new ListNodeServiceImpl();
+        System.out.println("Arguments: " + args);
+		//ListNodeServiceImpl service = new ListNodeServiceImpl();
         AlgorithmServiceImpl algorithmSvc = new AlgorithmServiceImpl();
 
 
